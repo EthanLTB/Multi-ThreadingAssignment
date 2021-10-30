@@ -26,10 +26,10 @@ public class Assignment8Application {
 		}
 
 		System.out.println("The number of records fetched is: " + allNumbers.size());
-		
+
 		Map<Integer, Integer> countOfIntegers = allNumbers.stream()
-				.collect(Collectors.toMap(key -> key, key -> 1, (oldKey, newKey) -> oldKey + 1));
-		
+				.collect(Collectors.toMap(k -> k, v -> 1, (oldValue, newValue) -> oldValue + 1));
+
 		System.out.println(countOfIntegers);
 	}
 
