@@ -12,16 +12,18 @@ import java.util.stream.Collectors;
 public class Assignment8Application {
 
 	public static void main(String[] args) {
+		
 		Assignment8 assignment8 = new Assignment8();
 		List<Integer> allNumbers = Collections.synchronizedList(new ArrayList<>());
 		ExecutorService executor = Executors.newCachedThreadPool();
-
 		List<CompletableFuture<Void>> tasks = new ArrayList<>();
+
 		for (int i = 0; i < 1000; i++) {
 			CompletableFuture<Void> task = CompletableFuture.supplyAsync(() -> assignment8.getNumbers(), executor)
 					.thenAccept(numbers -> allNumbers.addAll(numbers));
 			tasks.add(task);
 		}
+
 		while (tasks.stream().filter(e -> e.isDone()).count() < 1000) {
 		}
 
